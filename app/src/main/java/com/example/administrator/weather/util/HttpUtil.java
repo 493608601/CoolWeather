@@ -19,20 +19,22 @@ public class HttpUtil {
                     URL url = new URL(address);
                     connection = (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod("GET");
+                    connection.setConnectTimeout(8000);
                     connection.setReadTimeout(8000);
                     InputStream in = connection.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(in));
                     StringBuilder response = new StringBuilder();
                     String line;
-                    while ((line = reader.readLine()) != null){
+                    while ((line = reader.readLine()) != null) {
                         response.append(line);
                     }
-                    if(listener != null){
+                    if (listener != null) {
+                        // 回调onFinish()方法
                         listener.onFinish(response.toString());
                     }
-                }catch (Exception e){
-                    if(listener != null){
-                        //回调onError()方法
+                } catch (Exception e) {
+                    if (listener != null) {
+                        // 回调onError()方法
                         listener.onError(e);
                     }
                 }finally {

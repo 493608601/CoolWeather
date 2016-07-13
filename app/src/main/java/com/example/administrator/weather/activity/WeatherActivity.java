@@ -84,7 +84,7 @@ public class WeatherActivity extends Activity {
      * 查询天气代号所对应的天气
      */
     private void queryWeatherInfo(String weatherCode){
-        String address = "http://www.weather.com.cn/data/cityinfo" + weatherCode + ".xml";
+        String address = "http://www.weather.com.cn/data/cityinfo/" + weatherCode + ".html";
         queryFromServer(address,"countyCode");
     }
 
